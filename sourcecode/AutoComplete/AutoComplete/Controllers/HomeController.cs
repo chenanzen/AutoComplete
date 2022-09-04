@@ -7,10 +7,11 @@ namespace AutoComplete.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IConfiguration _configuration;
+        public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
         {
             _logger = logger;
+            _configuration = configuration;
         }
 
         public IActionResult Index()
@@ -30,7 +31,7 @@ namespace AutoComplete.Controllers
             term = term ?? string.Empty;
             var terms = term.Split('\u0020').ToList();
 
-            var api = new GitHubAPI();
+            var api = new GitHubAPI(_configuration);
             var res = api.SearchIssues(terms);
             var result = res.items
                 .Select(item => new

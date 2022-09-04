@@ -13,13 +13,12 @@ namespace AutoComplete.Models
     {
         private readonly string _token;
         private readonly string _baseurl;
-
-        public GitHubAPI()
+        
+        public GitHubAPI(IConfiguration configuration)
         {
-            _token = "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";
+            _token = configuration["github_pat"]; //"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";
             _baseurl = "https://api.github.com";
         }
-
 
         public SearchResultModel SearchIssues(List<string> keywords)
         {
