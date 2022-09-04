@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      	<h4 class="demoHeaders">Direct to github</h4>
+		<div>
+			<input id="autocomplete" title="type &quot;a&quot;">
+		</div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+
+$("#autocomplete").autocomplete({
+    source: '@Url.Action("GetStaticAutoComplete", "Home")',
+    minLength: 2,
+    select: function(event, ui) {
+        console.log(event);
+        console.log(ui);
+        log( "Selected: " + ui.item.value + " aka " + ui.item.id );
+    },
+    select: function( event, ui ) {
+        $("#autocomplete").val(ui.item.label);
+        return false;
+    }
+})
+.autocomplete("instance")._renderItem = function(ul, item) {
+    return $( "<li>" )
+    .append( "<div style='border-top'>" + item.label + "<br>" + item.desc + "</div>" )
+    .appendTo(ul);
+};
+;
+</script>
