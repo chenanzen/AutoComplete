@@ -9,3 +9,8 @@ NOTE: Azure Web App and GitHub API are both on free tier.
 2. Clone repo and open AutoComplete.sln in sourcecode folder with Visual Studio.
 3. Update token in config file
 4. Click Run
+
+## Dependencies
+1. JQuery-UI: This library is UI library to construct *AutoComplete* based on JQuery library
+2. RestSharp: This is nuget library to support consuming REST Web API
+3. GitHub Search API: This is end point that is used as data source of auto complete
